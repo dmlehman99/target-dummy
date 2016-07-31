@@ -1,8 +1,0 @@
-sudo: required
-
-services:
-  - docker
-
-install:
-  - docker build -t dmlehman/target-dummy .
-  - docker run -d -p 3000:3000 
