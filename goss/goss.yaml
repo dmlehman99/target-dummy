@@ -1,0 +1,10 @@
+port:
+  tcp6:3000:
+    listening: true
+  tcp:8008:
+    listening: true
+process:
+  node:
+    running: true
+  python:
+    running: true

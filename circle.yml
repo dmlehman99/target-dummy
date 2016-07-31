@@ -6,10 +6,15 @@ dependencies:
   override:
     - docker info
     - docker build -t dmlehman/target-dummy .
+    - mkdir goss
+    - cp goss.yaml ./goss
+    - curl -L https://github.com/aelsabbahy/goss/releases/download/v0.1.10/goss-linux-amd64 > ./goss/goss
+    - chmod +rx ./goss/goss
 
 test:
   override:
-    - docker run -d -p 3000:3000 -p 8008:8008 dmlehman/target-dummy; sleep 5
+    - docker run -d -p 3000:3000 -p 8008:8008 -v ${PWD}/goss:/tmp/goss --name test-container dmlehman/target-dummy; sleep 5
+    - sudo lxc-attach -n "$(docker inspect --format "{{.Id}}" test-container)" -- bash -c '/tmp/goss/goss -g /tmp/goss/goss.yaml validate --format tap'
     - curl --retry 5 --retry-delay 5 -v http://localhost:3000
     - curl --retry 5 --retry-delay 5 -v http://localhost:8008
 
