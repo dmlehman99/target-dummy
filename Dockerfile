@@ -26,6 +26,7 @@ RUN wget -O gruyere-code.zip http://google-gruyere.appspot.com/gruyere-code.zip 
     chown -R app /app
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+ADD sysctl.conf /etc/sysctl.conf
 
 EXPOSE 3000 8008
 
