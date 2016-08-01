@@ -9,3 +9,7 @@ Docker image bundled with DVNA [Damn Vulnerable Node Application] (https://githu
 ###Usage
 
     docker run -d -p 3000:3000 -p 8008:8008 dmlehman/target-dummy
+
+###MIT license
+
+Copyright (c) 2016, Matt Lehman
